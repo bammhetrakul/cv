@@ -44,24 +44,40 @@
       --introSectionMargin: 0 var(--pagePadding) 0 0;
       --nameBreakDisplay: none;
       --wrapperMargin: var(--s-md) auto;
-      --headingIconMarginRight: calc(var(--s-2xs) + 2px);
       --picSectionMaxWidth: 25%;
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 700px) {
       :root {
         --fontRatio: 1.2;
-        --spaceRatio: 1.5;
+        --spaceRatio: 1.4;
         --pagePadding: var(--s-md);
         --headerDirection: column;
         --picOrder: -1;
         --introSectionMargin: calc(var(--pagePadding) * -1) 0 0 0;
         --picSectionAlignSelf: flex-end;
         --nameBreakDisplay: inital;
-        --wrapperMargin: 0;
-        --headingIconMarginRight: calc(var(--s-2xs) - 2px);
+        --wrapperMargin: var(--s-md) auto;
         --headingIconTop: 3px;
         --picSectionMaxWidth: 35%;
+      }
+    }
+
+    @media print {
+      :root {
+        --s-sm: 0.875rem;
+        --fontRatio: 1.2;
+        --workSectionPaddingLeft: var(--s-md);
+        --dotSize: 7px;
+        --headerIconSize: 1.5rem;
+        --pagePadding: var(--s-lg);
+        --headerDirection: row;
+        --picOrder: 0;
+        --introSectionMargin: 0 var(--pagePadding) 0 0;
+        --picSectionAlignSelf: flex-start;
+        --nameBreakDisplay: none;
+        --wrapperMargin: 0;
+        --picSectionMaxWidth: 25%;
       }
     }
 
@@ -76,6 +92,7 @@
     h2 {
       font-size: var(--fs-xl);
       margin: var(--s-lg) 0 0 0;
+      padding-left: var(--workSectionPaddingLeft);
     }
     h3 {
       font-size: var(--fs-l);
@@ -97,6 +114,7 @@
 
     body {
       font-family: system-ui;
+      font-size: var(--s-sm);
       line-height: 1.5;
       background-color: var(--bg);
       color: var(--bodyDimmed);
@@ -154,9 +172,9 @@
       position: absolute;
       left: 0;
     }
-
-    .contentSection:not(:last-of-type) .workSection:last-of-type::before {
-      height: calc(var(--s-md) + 1rem);;
+    
+    .workSection.noLine:before {
+      height: calc(var(--s-md) + 1rem);
     }
 
     .content {
@@ -164,11 +182,11 @@
     }
 
     .headingIcon {
-      position: relative;
-      margin-left: calc(var(--headerIconSize) * -1 / 2 + 1px);
-      margin-right: var(--headingIconMarginRight);
-      top: var(--headingIconTop);
+      position: absolute;
+      left: calc(var(--headerIconSize) * -1 / 2 + 1px);
+      top: 6px;
       bottom: 0;
+      margin: auto;
     }
 
     .workTitle {
@@ -216,7 +234,7 @@
       display: var(--nameBreakDisplay);
     }
 
-    h2:first-of-type {
+    h2.firstH2 {
       margin-top: calc(var(--pagePadding) / 1.5);
     }
 
@@ -227,6 +245,10 @@
     .company,
     strong {
       font-weight: 600;
+    }
+
+    .pagebreak {
+      page-break-before: always;
     }
     
   </style>
@@ -265,7 +287,7 @@
     <div class="content">
 
     <section class="contentSection">
-      <h2>
+      <h2 class="firstH2">
         <svg class="headingIcon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path fill="currentColor" d="M14 6V4h-4v2h4zM4 8v11h16V8H4zm16-2c1.11 0 2 .89 2 2v11c0 1.11-.89 2-2 2H4c-1.11 0-2-.89-2-2l.01-11c0-1.11.88-2 1.99-2h4V4c0-1.11.89-2 2-2h4c1.11 0 2 .89 2 2v2h4z"/></svg>
         Work History
       </h2>
@@ -292,6 +314,8 @@
           <li>Led process for obtaining import/export and customs approvals from various government agencies</li>
         </ul>
       </section>
+
+      <div class="pagebreak"></div>
       
       <section class="workSection">
         <h3 class="workTitle">Intern</h3>
@@ -304,7 +328,7 @@
         </ul>
       </section>
       
-      <section class="workSection">
+      <section class="workSection noLine">
         <h3 class="workTitle">Intern</h3>
         <p class="company"  >Department Of Protocol, Ministry Of Foreign Affairs, Bangkok, Thailand</p>
         <p class="date">2015-06 - 2015-08</p>
@@ -338,7 +362,7 @@
         </p>
         <p class="date">2012-05 - 2017-12</p>
       </section>
-      <section class="workSection">
+      <section class="workSection noLine">
         <h3 class="workTitle">Certificate: International Summer School</h3>
         <p class="company">
           ESADE Business School - Barcelona, Spain

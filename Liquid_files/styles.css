@@ -1,0 +1,25 @@
+:root {
+  --unit: 6px;
+
+  --spaceIncrement: 2;
+
+  --space-xs: calc(var(--unit) / var(--spaceIncrement));
+  --space-s: var(--unit);
+  --space-m: calc(var(--unit) * var(--spaceIncrement));
+  --space-l: calc(var(--space-m) * var(--spaceIncrement));
+  --space-xl: calc(var(--space-l) * var(--spaceIncrement));
+  --space-2xl: calc(var(--space-xl) * var(--spaceIncrement));
+  --space-3xl: calc(var(--space-2xl) * var(--spaceIncrement));
+  --space-4xl: calc(var(--space-3xl) * var(--spaceIncrement));
+  --space-5xl: calc(var(--space-4xl) * var(--spaceIncrement));
+}
+
+body {
+  margin: 0;
+  padding: var(--space-xl);
+}
+
+.demoBox {
+  background-color: pink;
+  height: 1rem;
+}
